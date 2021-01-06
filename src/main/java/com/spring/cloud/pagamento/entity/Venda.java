@@ -1,9 +1,11 @@
 package com.spring.cloud.pagamento.entity;
 
+import com.spring.cloud.pagamento.data.vo.VendaVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -26,7 +28,7 @@ public class Venda implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @DateTimeFormat(pattern = "MM/dd/yyy")
+    @DateTimeFormat(pattern = "MM/dd/yyyy")
     @Column(nullable = false)
     private Date dataVenda;
 
@@ -36,5 +38,7 @@ public class Venda implements Serializable {
     @Column(nullable = false)
     private BigDecimal valorTotal;
 
-
+    public static Venda create(VendaVO vendaVO){
+        return new ModelMapper().map(vendaVO, Venda.class);
+    }
 }

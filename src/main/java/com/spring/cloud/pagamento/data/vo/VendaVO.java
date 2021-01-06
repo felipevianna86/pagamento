@@ -2,7 +2,6 @@ package com.spring.cloud.pagamento.data.vo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.spring.cloud.pagamento.entity.ProdutoVenda;
 import com.spring.cloud.pagamento.entity.Venda;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +31,7 @@ public class VendaVO extends RepresentationModel<VendaVO> implements Serializabl
     private Data dataVenda;
 
     @JsonProperty("produtos")
-    private List<ProdutoVenda> produtos;
+    private List<ProdutoVendaVO> produtos;
 
     @JsonProperty("valorTotal")
     private BigDecimal valorTotal;
