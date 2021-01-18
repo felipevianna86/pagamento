@@ -1,14 +1,13 @@
 package com.spring.cloud.pagamento.entity;
 
+import com.spring.cloud.pagamento.data.vo.ProdutoVO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.modelmapper.ModelMapper;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -26,4 +25,8 @@ public class Produto implements Serializable {
 
     @Column(nullable = false ,length = 10)
     private Integer estoque;
+
+    public static Produto create(ProdutoVO produtoVO){
+        return new ModelMapper().map(produtoVO, Produto.class);
+    }
 }
