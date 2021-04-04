@@ -2,6 +2,7 @@ package com.spring.cloud.pagamento.controller;
 
 import com.spring.cloud.pagamento.data.vo.VendaVO;
 import com.spring.cloud.pagamento.service.VendaService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,9 @@ public class VendaController {
 
     private final VendaService vendaService;
     private final PagedResourcesAssembler<VendaVO> assembler;
+    
+    @Value("${server.port}")
+    String port;
 
     public VendaController(VendaService vendaService, PagedResourcesAssembler<VendaVO> assembler){
         this.vendaService = vendaService;
@@ -74,6 +78,11 @@ public class VendaController {
     public ResponseEntity<?> delete(@PathVariable("id") Long id){
         vendaService.delete(id);
         return ResponseEntity.ok().build();
+    }
+
+    @RequestMapping("/mostrarPorta")
+    public String mostrarPorta(){
+        return port;
     }
 
 }
